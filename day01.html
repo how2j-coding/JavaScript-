@@ -42,8 +42,48 @@
                 alert(3);
                 break;
             default:
-                alert('not')
+                alert('not');
         }
+
+        // for循环
+         for (let i = 1; i <= 100; i++) {
+             console.log('★');
+         }
+
+         // 九九乘法表
+        let str = ''
+        for (let i = 1; i < 10; i++) {
+            for (let b = 1; b <= i; b++) {
+                let jiu = b+'*'+i+'='+i*b;
+                str = str + jiu + '  '
+            }
+            str = str + '\n'
+        }
+        console.log(str)
+
+        /*let a = 0;
+        let k = 1;
+        do {
+            a += k;
+            k++;
+        }while (k <= 100)
+        console.log(a)*/
+
+        let message;
+        do {
+            message = prompt('输入3');
+        }while (message !== '3');
+        alert('输入正确');
+
+        // continue和break 关键字
+        for (let u = 1; u <= 5; u++) {
+            if (u === 3) {
+                continue;
+                // break;
+            }
+            console.log(u);
+        }
+
     </script>
 
 </head>
