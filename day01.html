@@ -4,8 +4,48 @@
     <meta charset="UTF-8">
     <title>day01</title>
     <script type="text/javascript">
+        // 三元运算
+        // 条件 ？ 表达式 ： 表达式
 
+        let num = 10;
+
+        // if (num > 5) {
+        //     result = 'yes'
+        // }else {
+        //     result = 'no'
+        // }
+        let result = num > 5 ? 'yes':'no';
+
+        let time = prompt('输入数字');
+        let results = time < 10 ? '0' + time : time
+        console.log(results)
+
+        // 分支switch
+        /*switch (表达式) {
+            case value：
+                语句；
+                break;
+            case value2：
+                语句；
+                break;
+            default:
+                执行最后语句;
+        }*/
+        switch (2) {
+            case 1:
+                alert(1);
+                break;
+            case 2:
+                alert(2);
+                break;
+            case 3:
+                alert(3);
+                break;
+            default:
+                alert('not')
+        }
     </script>
+
 </head>
 <body>
 
