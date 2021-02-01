@@ -3,6 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <title>day04</title>
+    <script type="text/javascript">
+        // 函数
+        function getSum(num1, num2) {
+            let sum = 0;
+            for (let i = num1; i < num2; i++) {
+                sum += i;
+            }
+            console.log(sum);
+        }
+
+        getSum(1, 100);
+
+
+        // 函数求最大值
+        function getArrMax(arr) {
+            let max = arr[0];
+            for (let a = 1; a <= arr.length; a++) {
+                if (arr[a] > max) {
+                    max = arr[a];
+                }
+            }
+            return max;
+        }
+
+        let re = getArrMax([3, 4, 5, 6, 7, 8]);
+        console.log(re)
+
+        // arguments的使用
+        // 伪数组 具有length，按照索引方式存储，没有真正数组的特性。
+        function fn() {
+            console.log(arguments)
+        }
+
+        fn(12, 34, 5);
+
+
+        // 判断是否为闰年的函数
+        function isRunYear(year) {
+            let flag = false;
+            if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+                flag = true;
+            }
+            return flag;
+        }
+
+        // 用户输入年份
+        function Year() {
+            let year = prompt("import year:")
+            if (isRunYear(year)) {
+                alert('2月29天，是闰年');
+            } else {
+                alert('2月28天，是平年');
+            }
+        }
+
+        Year()
+
+        // 全局作用域 局部作用域
+        // 全局变量 局部变量
+        // 作用域链
+        var b = 3;
+
+        function a() {
+            var b = 4;
+
+            function f() {
+                console.log(b);
+            }
+        }
+
+        // 预解析(变量预解析和函数预解析)
+
+        // -------------------------------------------------------------
+        // 利用对象字面量创建对象
+        var obj = {
+            uname: "12",
+            age: 18,
+            sayhi: function () {
+                console.log('hi')
+            }
+        }
+
+        // 对象的调用
+        console.log(obj.uname)
+        console.log(obj['age'])
+
+        // 调用对象方法
+        obj.sayhi()
+
+        // ---------------------------------------------------------
+        // 利用New Object创建对象
+        var obj1 = new Object();
+        obj1.year = '2020';
+        obj1.fun = function () {
+            console.log('hello');
+        }
+
+        // ----------------------------------------------------------
+        // 使用构造函数创建对象 首字母必须大写
+        function Star(uname, age, sex) {
+            this.name = uname;
+            this.age = age;
+            this.sex = sex;
+            this.sing = function (sang) {
+                console.log(sang);
+            }
+        }
+
+        let ldh = new Star('刘德华', '18', 'boy'); // 对象实例化 调用函数返回的是一个对象
+        console.log(ldh.sex);
+        console.log(ldh['age'])
+        ldh.sing('笨小孩');
+
+        // 练习
+        function King(name, property, bloodVolume) {
+            this.name = name;
+            this.type = property;
+            this.blood = bloodVolume;
+            this.attack = function (G) {
+                console.log('攻击：' + G)
+            }
+        }
+
+        // 廉颇
+        let lianPo = new King('廉颇', '力量型', '500血量')
+        lianPo.attack('近战')
+
+        // 后裔
+        let begat = new King('后裔', '射手型', '100血量')
+        begat.attack('远程')
+
+
+        // -----------------------------------------------------------------------
+        // 遍历对象 for in
+        let kl = {
+            uname: "12",
+            age: 18
+        }
+
+        for (let key in kl) {
+            console.log(key)  // 输出属性名
+            console.log(kl[key]) // 属性值
+        }
+
+        // ------------------------------------------------------------------------
+        // 数组排序
+        let Array = [3, 5,5,9,4,7,1,78,54];
+        /*for (let t = 0; t <= Array.length; t++) {
+            for (let h = 0; h <= Array.length - t - 1; h++) {
+                if (Array[h] > Array[h + 1]) {
+                    let the = Array[h];
+                    Array[h] = Array[h + 1];
+                    Array[h + 1] = the;
+                }
+            }
+        }
+        console.log(Array);*/
+
+        // 翻转数组
+        let NewArray = []
+        for (let v = Array.length - 1; v >= 0; v--) {
+                NewArray[NewArray.length] = Array[v];
+        }
+        console.log(NewArray);
+    </script>
 </head>
 <body>
 
