@@ -3,6 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <title>day06</title>
+    <script>
+        // 添加删除数组
+        // 末尾添加
+        let arr = [1, 2, 3, 4, 5];
+        arr.push(4);
+        arr.push(8, 6, 8); // 返回新数组的length。
+
+        // unshift
+        // 头部添加
+        arr.unshift('red'); // 返回新数组的length。
+
+        // pop
+        // 末尾删除 一个
+        arr.pop(); // 返回删除的元素
+
+        // shift
+        // 头部删除
+        arr.shift();
+        
+        // 数组的排序
+        // 颠倒数组
+        // reverse()
+        
+        // 排序
+        // sort()
+        arr1 = [13, 4, 17, 7, 1, 4, 32]
+        arr1.sort(function (a, b) {
+            return a - b; //升序排列
+            // return b - a; //  降序
+        });
+        
+        // 获取索引号
+        arr1.indexOf(4);
+        // 从后开始
+        arr1.lastIndexOf(4);
+        
+        // 数组转字符串
+        console.log(arr1.toString());
+        console.log(arr1.join('-'))
+        
+        // ------------------------------------------------------------------
+        // 基本包装类型：简单数据类型包装复杂数据类型
+        // 字符串对象
+        let str = '前进位置进';
+        console.log(str.indexOf('进'));
+        console.log(str.indexOf('进', 2));
+        
+        // 查找‘abcoefoxyozzopp’中o的位置与次数
+        
+        function findO(str1) {
+            let newArray = [];
+            let frequency = 0;
+            let first = str1.indexOf('o');
+            while (first !== -1) {
+                let result = '位置：' + first;
+                frequency ++;
+                first = str1.indexOf('o', first + 1);
+                newArray.push(result);
+            }
+            return newArray;
+        }
+
+        let str1 = 'abcoefoxyozzopp';
+        console.log(findO(str1));
+
+        // -----------------------------------------------------------
+        // 根据位置返回字符
+        let str2 = 'andy';
+        console.log(str2.charAt(2))
+        // 根据位置返回字符的ASCll码 判断用户按下键
+        console.log(str2.charCodeAt(2))
+        // 获取指定位置字符 H5
+        console.log(str[2])
+
+        // 次数统计
+        function count(str1) {
+            let arr2 = {};
+            for (let i = 0; i < str1.length; i++) {
+                let chars = str1.charAt(i);
+                if (arr2[chars]) {
+                    arr2[chars] ++;
+                }else {
+                    arr2[chars] = 1;
+                }
+            }
+            return arr2;
+        }
+
+        // 遍历对象
+        let max = 0;
+        for (let arr3 in count(str1)) {
+            if (max < count(str1)[arr3]) {
+                max = count(str1)[arr3];
+            }
+        }
+        console.log(max)
+
+        // 字符串的替换
+        // str.replace('a', 'n');
+
+        // str转数组
+        // str.split(',');
+
+
+        // 栈和堆
+        /*栈 简单数据
+        堆 复杂数据*/
+    </script>
 </head>
 <body>
 
