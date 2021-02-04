@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day07</title>
+    <script>
+        //  web APIs  浏览器BOM  页面元素DOM
+        // 文档对象模型DOM
+
+        window.onload = function(){
+            // 通过id获取
+            let getId = document.getElementById('id');
+
+            // 通过标签名获取 返回伪数组
+            let getElement = document.getElementsByTagName('div');
+
+            let getList = document.getElementsByTagName('div')[1];
+            let getP = getList.getElementsByTagName('p');
+
+            // 通过class获取 返回伪数组
+            let getClass = document.getElementsByClassName('id')[1];
+
+            // querySelector 返回指定选择器的第一个元素对象  H5
+            let firstBox = document.querySelector('.id')
+
+            // querySelectorAll 返回····集合， 伪数组
+            let Box = document.querySelectorAll('div')[0];
+
+            // 获取特殊元素 body html
+            // body
+            let body = document.body;
+
+            // html
+            let html = document.documentElement;
+
+
+
+            // ------------------------------------------------------------------
+            // 事件 触发--响应
+            // 事件源 --> 事件类型 --> 事件处理程序
+            getId.onclick = function() {
+                alert('click');
+            }
+
+            /*onclick  左键点击
+            onmouseover 经过触发
+            onmouseout 离开
+            onfocus 获得焦点触发
+            onblur 失去焦点触发
+            onmousemove 移动触发
+            onmouseup 弹起触发
+            onmousedown 按下触发*/
+
+            // -------------------------------------------------------------------------
+            // 操作元素
+            // 改变元素内容
+            // innerHTML innerText(不会识别HTML标签 不会保留空格和换行)
+            getId.onclick = function (){
+                getP.innerHTML = 'change Text';
+            }
+
+            // 改变元素属性
+            getId.onclick = function (){
+                getP.src = 'change Text';
+                getP.title = 'change Text';
+            }
+
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="id" class="id"></div>
+    <div id="id1">
+        <p></p>
+        <p></p>
+    </div>
+</body>
+</html>

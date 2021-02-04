@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>密码框</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: relative;
+            width: 200px;
+            height: 30px;
+            margin: 100px auto;
+        }
+        img {
+            position: absolute;
+            width: 20px;
+            right: 10px;
+            top: 0;
+        }
+        input {
+            height: 24px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #3c3f41;
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let open = "https://cdn.jsdelivr.net/gh/solitude93/Figure/HEXO-BLOG/open.png";
+            let close = "https://cdn.jsdelivr.net/gh/solitude93/Figure/HEXO-BLOG/close.png";
+            let flog = 0;
+            let img = document.querySelector('img');
+            let input = document.querySelector('input')
+            img.src = close;
+            img.onclick = function () {
+                if (flog === 0) {
+                    input.type = 'text';
+                    img.src = open;
+                    flog = 1;
+                }else {
+                    input.type = 'password';
+                    img.src = close;
+                    flog = 0;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <img src="" alt="icon">
+        <label>
+            <input type="password" value="" placeholder="密码"/>
+        </label>
+    </div>
+</body>
+</html>
