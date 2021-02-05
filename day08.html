@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day08</title>
+    <style>
+        .wrap {
+            width: 400px;
+            height: 130px;
+            margin: 100px auto;
+            background-color: #f1f3f4;
+        }
+        .wrap td{
+            text-align: center;
+        }
+        table {
+            width: 100%;
+        }
+
+        thead tr {
+            background-color: #686b6d;
+        }
+        .color {
+            background-color: rebeccapurple;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            // 样式修改
+            // 行内样式  类名样式操作
+            /*let div = document.querySelector('div');
+            let p = document.querySelector('p');
+            div.onclick = function(){
+                p.style.backgroundColor = 'red';
+                div.style.display = 'block';
+                p.className = 'color'
+            }*/
+            let Tr = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+            let Input = document.getElementsByTagName('tbody')[0].getElementsByTagName('input');
+            let selectAll = document.getElementById('1');
+
+            // 颜色加深
+            for (let i = 0; i < Tr.length; i++) {
+                Tr[i].onmouseover = function () {
+                    for (let i2 = 0; i2 < Tr.length; i2++) {
+                        Tr[i2].style.backgroundColor = '#f1f3f4';
+                    }
+                    this.style.backgroundColor = '#fee691'
+                }
+
+                Tr[i].onmouseout = function () {
+                    Tr[i].style.backgroundColor = '#f1f3f4'
+                }
+            }
+
+            // 全选
+            selectAll.onclick = function () {
+                for (let i = 0; i< Input.length; i++) {
+                    Input[i].checked = this.checked;
+                }
+            }
+
+            // 当全部选择时，自动勾选全选
+            for (let i = 0; i<Input.length; i++) {
+                Input[i].onclick = function () {
+                    for (let i = 0; i < Input.length; i++) {
+                        if (!Input[i].checked) {
+                            selectAll.checked = false;
+                            break;
+                        } else {
+                            selectAll.checked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <label for="1">全选</label>
+                        <input type="checkbox" id="1">
+                    </td>
+                    <td>123</td>
+                    <td>123</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="2">点击</label>
+                        <input type="checkbox" id="2" >
+                    </td>
+                    <td>123</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="3">点击</label>
+                        <input type="checkbox" id="3" >
+                    </td>
+                    <td>123</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="4">点击</label>
+                        <input type="checkbox" id="4" >
+                    </td>
+                    <td>123</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="5">点击</label>
+                        <input type="checkbox" id="5" >
+                    </td>
+                    <td>123</td>
+                    <td>123</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
