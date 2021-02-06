@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>day09</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            // 获取属性值----------------------------------------------------------------------
+            let div = document.getElementById('123');
+
+            // div.id;  获取内置属性值，元素自带的属性。
+            div.getAttribute('id');  // 获取自定义属性
+
+
+            // 设置属性值-----------------------------------------------------------------------
+            div.id = 'test'; // 设置元素自带的属性
+            div.setAttribute('id', '456'); // 设置自定义元素，也能修改内置元素
+
+            // 移除属性-------------------------------------------------------------------
+             div.removeAttribute('class');
+
+            // 自定义属性以data-开头命名 IE11-----------------------------------------------------
+            console.log(div.dataset.index);
+            console.log(div.dataset.time);
+            console.log(div.dataset.listName);
+
+
+            // 节点操作
+            // 利用节点层级关系获取元素
+            // nodeType（节点类型） nodeName（节点名称） nodeValue （节点值）
+            // 元素节点为1 属性节点为2 文本节点为3
+            let sP = document.getElementsByClassName('tu')[0];
+            let Div = sP.parentNode; // 父节点
+            let child = Div.childNodes; // 包含元素节点，文本节点
+            // 处理获取元素节点
+            for (let i = 0; i < child.length; i++) {
+                if (child[i].nodeType === 1) {
+                    console.log(child[1]);
+                }
+            }
+
+            // ---------------------------------------------
+            let child2 = Div.children; // 只获取元素节点
+
+            // 获取第一个元素节点
+            // let first = Div.firstElementChild;
+            let first = Div.children[0];
+            // 获取最后一个
+            // let last = Div.lastElementChild;
+            let last = Div.children[Div.children.length - 1];
+
+
+            // 兄弟节点
+            let br = document.getElementsByClassName('brothers')[0];
+            let br1 = br.nextSibling; // 下一个兄弟节点 包含文本节点，属性节点。。
+            let br2 = br.previousSibling; //上一个兄弟节点，包含文节点。。
+
+            // 获取兄弟元素节点 兼容性问题
+            console.log(br.nextElementSibling);
+            console.log(br.previousElementSibling);
+
+            // 封装兼容性函数
+             function getNextElementSibling(element) {
+                 let el = element;
+                 while (el = el.nextSibling) {
+                     if (el.nodeType === 1) {
+                         return el;
+                     }
+                 }
+                 return null;
+             }
+             getNextElementSibling(br1);
+
+            // -------------------------------------------------------------------------
+            // 创建节点
+            let creatLi = document.createElement('li');
+
+            // 添加节点(后面追加元素)  father.appendChild(children)
+            div.appendChild(creatLi);
+            // 前面追加insertBefore(children, 指定元素)
+            div.insertBefore(creatLi, div.children[0])
+
+
+            // 删除节点
+            // Div.removeChild(child[index]);
+
+            // 复制节点 然后添加到指定位置
+            // Div.cloneNode();  浅拷贝  只复制标签不复制内容
+            // Div.cloneNode(true); 深拷贝
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="123" class="center" data-index = '45' data-time = '2021' data-list-name = 'How'>
+        <p class="tu">
+            <p class="brothers">12</p>
+            <p>21</p>
+            <p>12</p>
+            <p>12</p>
+            <p>21</p>
+        </p>
+    </div>
+</body>
+</html>

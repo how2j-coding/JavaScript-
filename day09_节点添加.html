@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>节点添加</title>
+    <style type="text/css">
+        .wrap {
+            width: 300px;
+            height: 200px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .wrap textarea {
+            width: 150px;
+            height: 100px;
+        }
+        .wrap label {
+            position: absolute;
+            left: 24px;
+            top: -24px;
+        }
+        .wrap li {
+            background-color: #bbbbbb;
+        }
+        .wrap button {
+            position: absolute;
+            top: 50px;
+            right: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let but = document.getElementsByTagName('button')[0];
+            let text = document.querySelector('textarea');
+            let ul = document.getElementsByTagName('ul')[0];
+
+            but.onclick = function () {
+                if (text.value === '') {
+                    alert('请输入内容');
+                }else {
+                    let creatLi = document.createElement('li');
+                    creatLi.innerHTML = text.value;
+                    // ul.appendChild(creatLi);  往后添加
+                    ul.insertBefore(creatLi, ul.children[0]); // 向前添加
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <label for="123">请输入文本</label>
+        <textarea name="" id="123"></textarea>
+        <button>添加</button>
+        <ul>
+
+        </ul>
+    </div>
+</body>
+</html>

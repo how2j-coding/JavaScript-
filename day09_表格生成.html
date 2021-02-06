@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>表格生成</title>
+    <style type="text/css">
+        .wrap {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .wrap table {
+            width: 100%;
+        }
+
+        table th {
+            height: 26px;
+            background-color: #515457;
+            font-size: 12px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        table tbody tr {
+            background-color: #afb1b3;
+            height: 30px;
+            text-align: center;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let date = [
+                {
+                    name: '小华',
+                    specialty: 'JavaScript',
+                    score: 100
+                }, {
+                    name: '火狐',
+                    specialty: 'JavaScript',
+                    score: 67
+                }, {
+                    name: '也来',
+                    specialty: 'PHP',
+                    score: 84
+                }, {
+                    name: '别名',
+                    specialty: 'JavaScript',
+                    score: 72
+                }, {
+                    name: '实际',
+                    specialty: 'Database',
+                    score: 61
+                }
+            ];
+            let tbody = document.querySelector('tbody');
+            for (let i = 0; i < date.length; i++) {
+                // tr
+                let tr = document.createElement('tr');
+                tbody.appendChild(tr);
+                // td
+                for (let key in date[i]) {
+                    let td = document.createElement('td');
+                    td.innerHTML = date[i][key];
+                    tr.appendChild(td);
+                }
+                // 操作
+                let td = document.createElement('td');
+                td.innerHTML = '<a href="javascript:;">删除</a>'
+                tr.appendChild(td);
+            }
+
+            // 点击删除
+            let deleteTr = tbody.querySelectorAll('a');
+            for (let i = 0; i < deleteTr.length; i++) {
+                deleteTr[i].onclick = function() {
+                   tbody.removeChild(this.parentNode.parentNode);
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>specialty</th>
+                <th>score</th>
+                <th>button</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
