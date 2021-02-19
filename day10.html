@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day10</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            let d = document.querySelector('button');
+            // ------------------------------------------------------------------
+            // 方法监听注册 IE9以上
+            // 事件侦听注册事件
+            d.addEventListener('click', function() {
+                d.innerHTML ='已点击';
+            })
+
+            // 兼容性解决方法
+            function addEventListener(element, eventName, fn) {
+                // 判断当前浏览器是否支持 addEventListener方法
+                if (element.addEventListener) {
+                    element.addEventListener(eventName, fn); // 第三个参数默认false
+                } else if (element.attachEvent) {
+                    element.attachEvent('on' + eventName, fn);
+                } else  {
+                    // 相当于element.onclick = fn;
+                    element['on' + eventName] = fn;
+                }
+            }
+
+            // --------------------------------------------------------------------------
+            // 删除事件
+            // 第一种
+            d.onclick = function () {
+                alert('123');
+                d.onclick = null;
+            }
+
+            // 第二种
+            d.addEventListener('click', fn);  // fn不需要添加()调用
+
+            function fn() {
+                alert('123');
+                d.removeEventListener('click', fn);
+            }
+
+            // ----------------------------------------------------------------------------------
+            // DOM事件流  事件传播过程  捕获与冒泡
+            //todo 事件对象 event || evt || e 系统自动创建 不需要传递参数
+            // 捕获事件
+            d.addEventListener('click', function (event) {
+                // 兼容性问题 IE9以下不支持event
+                let e = event || window.event;
+                console.log(e);
+            },true)
+
+            // 常见事件对象的属性和方法
+            // 1. e.target 返回触发事件的元素对象  this 返回的是绑定事件的对象
+            let ulFather = document.querySelector('.father');
+            ulFather.addEventListener('click', function (e) {
+                // 兼容
+                // let target = e.target || e.srcElement;
+                console.log(e.target);
+                // 获取事件类型
+                console.log(e.type)
+            })
+
+            // 阻止默认行为，如：链接不跳转 或者让提交按钮不提交
+            let a = document.querySelector('a');
+            a.addEventListener('click', function (e) {
+                e.preventDefault(); //
+            })
+        }
+    </script>
+</head>
+<body>
+    <button>点击</button>
+    <ul class="father">
+        <li>123</li>
+        <li>456</li>
+        <li>789</li>
+    </ul>
+    <a href="https://www.baidu.com">链接</a>
+    <input type="submit" value="提交">
+</body>
+</html>
