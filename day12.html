@@ -21,12 +21,47 @@
             })
 
             // ----------------------------------------------
-            // BOM浏览器对象
+            // BOM浏览器对象 浏览器对象
 
+
+            // 窗口加载事件  window.onload = function(){}
+            // window.onload = function(){}
+            // 页面内容全部加载执行
+            // window.addEventListener('load',function () {})
+            // DOM加载完毕
+            // window.addEventListener('DOMContentLoaded',function () {})
+
+
+            // ---------------------------------------------------------------
+
+            // resize 窗口大小发生变化触发
+             window.addEventListener('resize', function () {
+                 alert('resize');
+             })
+
+
+            // -----------------------------------------------------
+            //  定时器  setTimeout() setInterval()
+            function transfer(){
+                console.log('定时器');
+            }
+            // 标志符
+            let timer =  setTimeout(transfer, 5000)
+
+             // 清除定时器
+            let but = document.querySelector('input');
+            but.addEventListener('click', function () {
+                clearTimeout(timer);
+            })
+
+
+            // -------------------------------------------------------
+            // 重复调用函数
+            let cycle  =  setInterval(transfer, 2000)
         }
     </script>
 </head>
 <body>
-
+    <input type="button" value="暂 停">
 </body>
 </html>
