@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day12_京东搜索</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            width: 292px;
+            height: 34px;
+            margin: 100px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input {
+            height: 34px;
+            font-size: 16px;
+            outline: none;
+            background: none;
+            border: 0;
+        }
+
+        input[type = "text"] {
+            border: 1px solid #333333;
+            padding: 5px;
+            width: 216px;
+        }
+
+        input[type = "button"] {
+            color: #ffff;
+            width: 68px;
+            background-color: #0066ff;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            let text = document.querySelector('.inputText');
+
+            document.addEventListener('keyup', function (e) {
+                console.log(e.keyCode)
+                if (e.keyCode === 83) {
+                    text.focus()
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <input type="text" class="inputText">
+        <input type="button" value="搜 索" class="inputButton">
+    </div>
+</body>
+</html>

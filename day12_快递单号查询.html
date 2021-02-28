@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day12_快递单号查询</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            position: relative;
+            width: 100px;
+            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+        }
+        .showBox {
+            display: none;
+            font-size: 14px;
+            top: -36px;
+            left: -34px;
+            padding: 4px;
+            position: absolute;
+            border: 1px solid rgba(0,0,0,.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .text {
+            padding: 8px;
+            height: 28px;
+            width: 172px;
+            outline: none;
+            border: 1px solid rebeccapurple;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let showBox = document.querySelector('.showBox');
+            let but = document.querySelector('.text');
+
+            but.addEventListener('keyup', function(e) {
+                if (this.value !== '') {
+                    showBox.style.display = 'block';
+                    showBox.innerText = this.value;
+                } else {
+                    showBox.style.display = 'none';
+                }
+            })
+
+            but.addEventListener('blur', function () {
+                showBox.style.display = 'none';
+            })
+
+            but.addEventListener('focus', function () {
+                if (but.value !== '') {
+                    showBox.style.display = 'block';
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <p class="showBox"></p>
+        <input type="text" class="text">
+    </div>
+</body>
+</html>
