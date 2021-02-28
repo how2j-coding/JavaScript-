@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>图片跟随</title>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            let Img = document.querySelector('img');
+            // 鼠标移动触发事件 mousemove
+            document.addEventListener('mousemove', function(e) {
+                let MouseX = e.pageX;
+                let MouseY = e.pageY;
+                Img.style.left = MouseX + 'px';
+                Img.style.top = MouseY + 'px';
+            })
+        }
+    </script>
+</head>
+<body>
+    <img src="http://pm.how2j.online/hello.jpg" alt="hello.png" style="width: 20px; height: 20px; position: absolute">
+</body>
+</html>

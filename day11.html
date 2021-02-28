@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day11</title>
+    <style type="text/css">
+        .father {
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            background-color: #499b54;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: #663399;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+
+            // 阻止冒泡事件
+            let divF = document.querySelector('.father');
+            divF.addEventListener('click', function (e) {
+                alert('click');
+            }, false);
+
+            let divS = document.querySelector('.son');
+            divS.addEventListener('click', function (e) {
+                alert('divS click')
+                e.stopPropagation();
+
+                // 兼容性解决方案
+                if (e && e.stopPropagation) {
+                    e.stopPropagation();
+                } else {
+                    window.event.cancelBubble = true;
+                }
+            }, false);
+
+
+            // 事件委托（代理、委派）
+            let ul = document.querySelector('ul');
+
+            ul.addEventListener('click', function(e) {
+                e.target.style.backgroundColor = 'red';
+            })
+
+            // 禁用文字复制
+            // 1.禁用鼠标右键
+            document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+            })
+
+            // 2.禁止文字选中
+            document.addEventListener('selectstart', function (e) {
+                e.preventDefault();
+            });
+
+
+            // -----------------------------------------------------------------
+            // 鼠标事件对象 mouseEvent 键盘事件对象 keyboardEvent
+            document.addEventListener('click', function (e) {
+
+                // 鼠标点击可视化的点击坐标
+                console.log(e.clientX);
+                console.log(e.clientY)
+
+                // 相对于文档页面的点击坐标
+                console.log(e.pageX);
+                console.log(e.pageY);
+
+                // 相对于电脑屏幕的点击坐标
+                console.log(e.screenX);
+                console.log(e.screenY);
+            })
+
+            // -------------------------------------------------------------------
+            // 键盘事件
+            /*某个键盘松开时 onkeyup
+            键盘按下时 onkeydown
+            键盘按下时 但不能识别功能键，如：ctrl shift*/
+
+            document.addEventListener('keyup', function () {
+                console.log('弹起')
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <ul>
+        <li>123</li>
+        <li>234</li>
+        <li>345</li>
+        <li>456</li>
+    </ul>
+    <p>this text is not copy</p>
+</body>
+</html>
