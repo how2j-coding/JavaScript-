@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day15</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            color: #ffffff;
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            background-color: #0b54b3;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let box = document.querySelector('.box');
+
+
+            // offsetLeft offsetTop  元素偏移量
+            console.log(box.offsetLeft);
+            console.log(box.offsetTop);
+
+            // 获取鼠标在元素内的位置
+            // 事件对象获取鼠标在页面的位置
+            box.addEventListener('mousemove', function (e) {
+                // 获取结果四舍五入
+                let X = Math.round(e.pageX - this.offsetLeft);
+                let Y = Math.round(e.pageY - this.offsetTop);
+
+                // let X = e.pageX - this.offsetLeft;
+                // let Y = e.pageY - this.offsetTop;
+                this.innerHTML = 'X:'+ X + '   Y' + Y;
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
