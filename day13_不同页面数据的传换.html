@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day13_不同数据的传换</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 100px auto;
+        }
+
+        input {
+            width: 100px;
+            height: 28px;
+            outline: none;
+            padding: 8px;
+        }
+
+        button {
+            font-size: 12px;
+            width: 60px;
+            height: 28px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let text = document.querySelector("input");
+            let btn = document.querySelector('button');
+
+            btn.onclick = function () {
+                let textValue = text.value;
+
+                if (textValue === '') {
+                    alert('未输入');
+                } else {
+                    location.href = 'http://localhost:63341/Learning/js/day13_01.html?Username=' + textValue;
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <p>
+        <span>请输入(英文)：</span>
+        <input type="text" class="text">
+    </p>
+    <button class="btn">点击跳转</button>
+</div>
+</body>
+</html>

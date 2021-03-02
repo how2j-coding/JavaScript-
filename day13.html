@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day13</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            height: 28px;
+            margin: 100px auto;
+            width: 385px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input {
+            height: 100%;
+            outline: none;
+            padding: 8px;
+        }
+
+        button {
+            width: 64px;
+            height: 100%;
+            border: none;
+            background-color: #0b54b3;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let but = document.querySelector('button');
+            let time = 5;
+            let timer = null;
+            but.addEventListener('click', countdown);
+
+            function countdown() {
+                but.disabled = true;
+                timer = setInterval(function () {
+                    if (time === 0) {
+                        clearInterval(timer);
+                        but.disabled = false;
+                        but.innerHTML = '发 送';
+                        time = 5;
+                    } else {
+                        but.style.cursor = 'not-allowed';
+                        but.innerHTML = time +'秒';
+                        time--;
+                    }
+                },1000);
+            }
+
+
+
+            // -----------------------------------------------------------
+            // 执行队列，同步和异步
+            // 创建多线程
+            // 先执行执行栈中的同步任务，将异步任务（回掉函数）放入任务队列中，等待同步任务执行完毕，再执行异步任务。
+
+
+            // ---------------- location对象方法-----------------------------------------------
+
+            // location 获取或设置窗体的url  自动跳转页面
+            document.addEventListener('click', function () {
+                console.log(location.href);
+            });
+
+            // location 对象方法 assign  跳转页面（有历史记录）  replace 替换当前页面  reload 重新加载页面
+            document.addEventListener('click', function () {
+                // location.assign('https://www.baidu.com');
+                location.replace('https://www.baidu.com');
+
+                // 页面刷新  强制刷新加入参数true
+                // location.reload();
+            });
+
+            // ---------------------------------------------------------------------------
+            // navigator  浏览器信息
+            navigator.userAgent
+
+
+            // history 浏览器历史交互
+            document.addEventListener('click',function () {
+                history.back();
+                history.forward();
+                history.go(2)
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    输入手机号码：<input type="text">
+    <button>发 送</button>
+</div>
+</body>
+</html>

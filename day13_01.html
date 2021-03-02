@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day13_01</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 100px;
+            margin: 100px auto;
+        }
+
+        .box p:nth-of-type(1) {
+            margin-bottom: 30px;
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .box p:nth-of-type(2) {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        span{
+            font-size: 18px;
+            color: #0b54b3;
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            function f() {
+                let uR = location.search.substr(1).split('=')[1];
+                let spn = document.querySelector('span');
+
+                spn.innerHTML = uR;
+            }
+            f();
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <p>欢 迎</p>
+    <p><span></span>跳转成功</p>
+</div>
+</body>
+</html>
