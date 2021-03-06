@@ -2,90 +2,45 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>day01</title>
+    <title>day00</title>
     <script type="text/javascript">
-        // 三元运算
-        // 条件 ？ 表达式 ： 表达式
+        // isNaN() 判断变量是否为数字
+        // 用户输入 prompt("输入框")
+        /*
+        \n 换行符
+        \t 缩进
+        \b 空格  */
 
-        let num = 10;
+        // 获取字符串长度 length
+        let str = "Number 213"
+        console.log(str.length)
 
-        // if (num > 5) {
-        //     result = 'yes'
-        // }else {
-        //     result = 'no'
-        // }
-        let result = num > 5 ? 'yes':'no';
+        // 转字符串
+        // 数字转字符串
+        let Number = 10;
+        console.log(Number.toString())
+        console.log(String(Number))
+        console.log(Number + '')
 
-        let time = prompt('输入数字');
-        let results = time < 10 ? '0' + time : time
-        console.log(results)
+        // 字符串转数字
+        let strings = '10.56'
+        console.log(parseInt(strings)) // 取整 去除单位
+        console.log(parseFloat(strings))
 
-        // 分支switch
-        /*switch (表达式) {
-            case value：
-                语句；
-                break;
-            case value2：
-                语句；
-                break;
-            default:
-                执行最后语句;
-        }*/
-        switch (2) {
-            case 1:
-                alert(1);
-                break;
-            case 2:
-                alert(2);
-                break;
-            case 3:
-                alert(3);
-                break;
-            default:
-                alert('not');
-        }
+        console.log(typeof 4.5)
 
-        // for循环
-         for (let i = 1; i <= 100; i++) {
-             console.log('★');
-         }
+        // 转换为布尔值
+        console.log(Boolean(''))  // False
+        console.log(Boolean('123')) //True
 
-         // 九九乘法表
-        let str = ''
-        for (let i = 1; i < 10; i++) {
-            for (let b = 1; b <= i; b++) {
-                let jiu = b+'*'+i+'='+i*b;
-                str = str + jiu + '  '
-            }
-            str = str + '\n'
-        }
-        console.log(str)
+        // 递增
+        let  a = 12;
+        ++a
+        a++
+        console.log(a)
 
-        /*let a = 0;
-        let k = 1;
-        do {
-            a += k;
-            k++;
-        }while (k <= 100)
-        console.log(a)*/
-
-        let message;
-        do {
-            message = prompt('输入3');
-        }while (message !== '3');
-        alert('输入正确');
-
-        // continue和break 关键字
-        for (let u = 1; u <= 5; u++) {
-            if (u === 3) {
-                continue;
-                // break;
-            }
-            console.log(u);
-        }
-
+        // or = 或||   and = 与&&   no = 非!
     </script>
-
 </head>
 <body>
 

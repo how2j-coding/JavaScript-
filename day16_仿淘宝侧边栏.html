@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100%;
+            height: 1500px;
+            position: relative;
+        }
+
+        .sidebar {
+            position: absolute;
+            right: 0;
+            top: 300px;
+            width: 60px;
+            height: 200px;
+            border: 1px solid rebeccapurple;
+            border-radius: 5px;
+        }
+
+        .backToTop {
+            display: none;
+            width: 60px;
+            height: 60px;
+            background-color: #0b54b3;
+            margin-top: 20px;
+        }
+
+        .backToTop a {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            let box = document.querySelector('.box');
+            let sidebar = document.querySelector('.sidebar');
+            let backTop = document.querySelector('.backToTop');
+
+
+            let stop = sidebar.offsetTop - 100;
+
+            document.addEventListener('scroll', top)
+
+            function top(){
+                if (window.pageYOffset >= 500) {
+                    backTop.style.display = 'block'
+                    backTop.style.cursor = 'pointer'
+                }
+                else {
+                    backTop.style.display = 'none'
+                    backTop.addEventListener('click', function () {
+                        window.scrollTo( 0, 0 );
+                    })
+                }
+                // 页面被卷去部分
+                if (window.pageYOffset >= stop) {
+                    sidebar.style.position = 'fixed';
+                    sidebar.style.top = '100px'
+                }
+                else {
+                    sidebar.style.position = 'absolute';
+                    sidebar.style.top = '300px'
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="sidebar">
+        <div class="backToTop"></div>
+    </div>
+</div>
+</body>
+</html>

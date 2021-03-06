@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .box1 {
+            overflow: hidden;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+        }
+
+        .box2 {
+            width: 450px;
+            height: 450px;
+            border: 1px solid #000000;
+        }
+
+        .yellow {
+            z-index: 99999;
+            position: absolute;
+            display: none;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 0, 0.3);
+        }
+
+        .box1 img {
+            pointer-events: none;
+            width: 202px;
+            height: 200px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let wrap = document.querySelector('.wrap');
+            function dctWith() {
+                wrap.style.height = window.innerHeight + 'px';
+            }
+            dctWith();
+
+            let box1 = document.querySelector('.box1');
+            let box2 = document.querySelector('.box2');
+            let yellow = document.querySelector('.yellow');
+            let box2Img = document.querySelector('.box2img');
+
+
+            box1.addEventListener('mouseover', ut);
+            box1.addEventListener('mouseout', function () {
+                box2Img.style.display = 'none';
+                yellow.style.display = 'none'
+            });
+
+            // yellow 位置
+            function move(e) {
+                let X = e.pageX - box1.offsetLeft - yellow.offsetWidth / 2;
+                let Y = e.pageY - box1.offsetTop - yellow.offsetHeight / 2;
+
+                if (X <= 0) {
+                    X = 0;
+                } else if(X >= box1.offsetWidth - yellow.offsetWidth){
+                    X = box1.offsetWidth - yellow.offsetWidth;
+                }
+
+                if (Y <= 0) {
+                    Y = 0;
+                } else if (Y >= box1.offsetHeight - yellow.offsetHeight) {
+                    Y = box1.offsetHeight - yellow.offsetHeight;
+                }
+
+                yellow.style.left = X + 'px';
+                yellow.style.top = Y + 'px';
+
+                // let box2X = box1.offsetWidth - yellow.offsetWidth * ;
+                let box2Y = box2.offsetHeight / box1.offsetHeight * Y;
+
+                box2.style.position = 'relative';
+                box2Img.style.position = 'absolute';
+                box2.style.overflow = 'hidden';
+                box2Img.style.top = -box2Y + 'px'
+                box2Img.style.left = -box2X + 'px'
+            }
+            box1.addEventListener('mousemove', move);
+
+            //  移入显示
+            function ut() {
+                box2Img.style.display = 'block';
+                yellow.style.display = 'block';
+                yellow.style.cursor = 'all-scroll';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="box1">
+        <div class="yellow"></div>
+        <img src="http://img12.360buyimg.com/n1/s450x450_jfs/t1/145527/7/19712/37901/5fe30c20E8728892e/e69e5696e8ffd6a6.jpg" alt="">
+    </div>
+    <div class="box2">
+        <img class="box2img" src="http://img12.360buyimg.com/n1/s450x450_jfs/t1/145527/7/19712/37901/5fe30c20E8728892e/e69e5696e8ffd6a6.jpg" alt="">
+    </div>
+</div>
+</body>
+</html>

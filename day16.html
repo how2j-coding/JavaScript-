@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day16</title>
+    <script type="text/javascript">
+        window.addEventListener('load', function (message) {
+
+            // 元素的可视区
+
+            // client  动态获取该元素的边框大小、元素大小等。
+
+
+            // element.clientTop  元素上边框的大小
+            // element.clientLeft 元素左边框的大小
+            // element.clientWidth  返回不含边框的元素宽度
+            // element.clientHeight 返回元素的高度，包括内边距，但不包括边框
+
+
+            // ------------------------------------------------------------
+            // 立即执行函数 不需要调用 可以传入参数 独立创建了一个作用域
+
+            // (function () {})();  和 (function () {} ());
+
+            (function (a, b) {
+                console.log(a, b)
+                console.log(document.documentElement)
+            })(1,2);
+
+            // dpr 物理像素比
+            // 页面尺寸发生变化
+            window.addEventListener('resize', function () {
+                alert('resize');
+            });
+
+            // 页面显示
+            window.addEventListener('pageshow', function (e) {
+                // 判断页面是否从缓存中取出，是 返回 True
+                if (e.persisted) {
+                    alert(23)
+                }
+                alert(123)
+            })
+
+
+            // 滚动条 scroll
+            let box = document.querySelector('.box');
+            // 返回元素内实际内容的高度
+            alert(box.scrollHeight + box.scrollWidth)
+
+            // 滚动事件 滚动条发生变化
+            box.addEventListener('scroll', function() {
+                // 返回被卷曲的上侧距离
+                let top = this.scrollTop
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

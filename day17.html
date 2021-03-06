@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day17</title>
+    <style type="text/css">
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rebeccapurple;
+        }
+    </style>
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            // let art = 5>3? alert(true): alert(false);
+            let box = document.querySelector('.box')
+            // 三大系列
+            // element.offsetWidth 返回自身包括padding、边框、内容区域的数值
+            // element.clientWidth 返回不含边框
+            // element.scrollWidth  返回自身实际的宽度
+
+            // 动画函数封装
+            // 通过对象添加属性的方法添加函数
+            function fun(elements, distance) {
+                // 防止点击多次，造成添加多个定时器。
+                clearInterval(elements.timer)
+
+                elements.timer = setInterval(function () {
+                   if (elements.offsetLeft <= distance) {
+                       elements.style.left = elements.offsetLeft + 1 +'px';
+                   } else {
+                       clearInterval(elements.timer);
+                   }
+                }, 30);
+            }
+
+            box.addEventListener('click', function () {
+                box.style.cursor = 'pointer';
+                fun(box,500);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+</html>
