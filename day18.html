@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day18</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: rebeccapurple;
+        }
+    </style>
+    <script type="text/javascript">
+        // js面向对象
+        // 面向过程 POP
+        // 面向对象 OOP  继承性 多态性 封装性
+        // 类和对象
+        // 对象由属性和方法组成
+
+        // 创建类，必须使用new实例化对象
+        window.addEventListener('load', function () {
+
+            console.log('░░░░░░░░░▄▄\n' +
+                '░░░░░░░░░█░█\n' +
+                '░░░░░░░░░█░█\n' +
+                '░░░░░░░░█░░█\n' +
+                '░░░░░░░█░░░█\n' +
+                '█████▄▄█░░░██████▄\n' +
+                '▓▓▓▓█░░░░░░░░░░░░█\n' +
+                '▓▓▓▓█░░░░░░░░░░░░█\n' +
+                '▓▓▓▓█░░░░░░░░░░░░█\n' +
+                '▓▓▓▓█░░░░░░░░░░░░█\n' +
+                '▓▓▓▓█░░░░░░░░░░░░█\n' +
+                '▓▓▓▓█████░░░░░░░░█\n' +
+                '████▀░░░▀▀██████▀\n');
+
+
+
+            class Lei {
+                // 构造函数 constructor 接受传入的参数，同时返回实例对象。
+                constructor(uname, age) {
+                    this.uname = uname;
+                    this.age = age;
+                }
+
+                // 类里面函数，不需要关键字function
+                fu (parameter) {
+                    console.log(this.uname + parameter);
+                }
+            }
+
+            // 创建实例new
+            let instance = new Lei('实例', 18);
+
+            console.log(instance);
+            instance.fu('参数');
+
+
+
+            // --------------------------------------------------------
+            // 类的继承
+            class father {
+                constructor(name, money) {
+                    this.name = name;
+                    this.money = money;
+                }
+                sum () {
+                    console.log(this.name + this.money);
+                }
+                fun () {
+                    console.log(this.name)
+                }
+            }
+
+            // 继承父类 extends-------------------------
+            class Son extends father {
+                son(){
+                    console.log('son')
+                }
+            }
+            // let son = new Son('name', '9090');
+            // console.log(son.name);
+            // son.son();
+
+            // super 关键字 用于访问和调用对象父类上的函数
+            class Son1 extends father {
+                constructor(name, age) {
+                    super(name, age);  // 调用父类的构造函数
+                }
+            }
+
+            let son1 = new Son1(1, 5);
+
+            son1.sum();
+
+
+            // 调用父类的函数
+            console.log('-------------------------------------------')
+            let that
+            class Father1 {
+                constructor(x, y) {
+                    that = this
+                    this.x = x;
+                    this.y = y;
+
+                    // 获取对象
+                    this.bnt = document.querySelector('.box');
+                    this.bnt.onclick = this.sum;
+                }
+                say () {
+                    return 123
+                }
+                sum(){
+                    console.log(this)
+                    console.log(that.x);
+                }
+            }
+
+            class son3 extends Father1{
+                constructor(x, y) {
+                    // 子类在构造函数中使用super，必须放在this前面
+                    super(x,y);
+                    this.x = x;
+                    this.y = y;
+                    console.log(this)
+                }
+                say () {
+                    // 调用父类函数
+                    console.log(super.say())
+                }
+                subtraction(){
+                    console.log(this.x - this.y)
+                }
+            }
+            let say = new son3(5,2);
+            let sayFather = new Father1(3,5)
+            // say.sum();
+            // say.subtraction();
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day19</title>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei UI", SansSerif, serif;
+        }
+        input {
+            width: 40px;
+        }
+        .box {
+            width: 600px;
+            height: 400px;
+            margin: 100px auto 0;
+            overflow: hidden;
+        }
+        .box>p {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        .wrap {
+            border: 1px solid black;
+        }
+        nav {
+            position: relative;
+            width: 100%;
+        }
+        ul {
+            height: 30px;
+            font-size: 0;
+            width: 566px;
+        }
+
+        ul li {
+            line-height: 30px;
+            width: 70px;
+            height: 30px;
+            border-right: 1px solid rebeccapurple;
+            text-align: center;
+            list-style: none;
+            display: inline-block;
+        }
+
+        .white {
+            border-bottom: 2px solid #ffffff;
+            height: 29px;
+        }
+
+        .labelText {
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .labelContent {
+            box-sizing: border-box;
+            border-top: 1px solid black;
+            width: 100%;
+            height: 303px;
+            padding: 8px;
+        }
+
+        .label i {
+            position: absolute;
+            display: block;
+            right: 0;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .labelContent div {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        li span:last-child {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            font-size: 14px;
+            margin-left: 6px;
+            cursor: pointer;
+        }
+
+         .labelContent .divDisplay {
+             display: block;
+         }
+    </style>
+    <script>
+        window.onload = function () {
+            let that = this
+            class dynamicallySwitchTabs {
+                constructor(ulClass, divClass) {
+                    that = this
+                    // 获取所有的li元素
+                    this.wrapLabel = document.querySelector(ulClass);
+                    // 获取内容的div元素
+                    this.contentLabel = document.querySelector(divClass)
+
+                    // 获取添加和删除功能的span元素
+                    this.ulLabel = this.wrapLabel.querySelector('ul');
+                    this.iLabel = this.wrapLabel.querySelector('i')
+
+                    this.init();
+                }
+
+                // 获取所有的元素 动态添加元素，获取新的对应元素
+                updateElement(){
+                    this.liLabel = this.wrapLabel.querySelectorAll('li');
+                    this.divLabel = this.contentLabel.querySelectorAll('div');
+                    this.spanLabel = this.ulLabel.querySelectorAll('.fa');
+                    this.firstSpan = this.wrapLabel.querySelectorAll('ul li span:first-child');
+                }
+                // 初始化操作，让相关操作的元素绑定事件
+                init() {
+                    this.updateElement();
+                    for (let i = 0; i < this.liLabel.length; i++) {
+                        this.liLabel[i].index = i;
+                        this.liLabel[i].onclick = this.switchTab;
+                        this.firstSpan[i].ondblclick = this.editLabel;
+                    }
+
+                    for (let i = 0; i < this.spanLabel.length; i++) {
+                        this.spanLabel[i].onclick = this.removeLabel;
+                    }
+
+                    this.iLabel.onclick = this.addTag;
+                }
+                // 清除样式
+                clearClass() {
+                    for (let i = 0; i < this.liLabel.length; i++) {
+                        this.liLabel[i].className = '';
+                        this.divLabel[i].className = '';
+                    }
+                }
+                // 添加标签
+                addTag(){
+                    that.clearClass();
+                    let random = Math.random();
+                    let liElement = '<li class="white"><span class="labelText">标签四</span><span class="fa fa-close"></span></li>'
+                    let divElement = '<div class="divDisplay">内容'+ random +'</div>'
+                    that.ulLabel.insertAdjacentHTML('beforeend', liElement)
+                    that.contentLabel.insertAdjacentHTML('beforeend', divElement)
+                    that.init();
+                }
+                // 删除标签
+                removeLabel(e){
+                    e.stopPropagation();  // 停止冒泡事件
+                    let faParenIndex = this.parentNode.index;
+                    that.liLabel[faParenIndex].remove();
+                    that.divLabel[faParenIndex].remove();
+                    that.init();
+
+                    if (document.querySelector('.white')) return;
+                    faParenIndex--;
+                    that.liLabel[faParenIndex]  && that.liLabel[faParenIndex].click();  // 手动调用点击事件
+
+                }
+                // 切换功能
+                switchTab(){
+                    that.clearClass();
+                    this.className = 'white';
+                    that.divLabel[this.index].className = '.labelContent divDisplay';
+                }
+
+                // 修改文本功能
+                editLabel(){
+                    let str = this.innerHTML;
+                    // 禁用双击选定内容
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.getSelection().empty();
+                    // alert(123)
+                    this.innerHTML = '<input type="text">'
+                    let inputStr = this.children[0];
+                    inputStr.value = str;
+                    inputStr.select();
+                    inputStr.onblur = function() {
+                        this.parentNode.innerHTML = this.value;
+                    }
+
+                    inputStr.onkeyup = function (e) {
+                        if (e.keyCode === 13) {
+                            this.blur();
+                        }
+                    }
+
+                }
+            }
+
+            new dynamicallySwitchTabs('.wrap', '.labelContent');
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <p>动态添加标签栏</p>
+        <div class="wrap">
+            <nav class="label">
+                <ul class="labelUl">
+                    <li class="white">
+                        <span class="labelText">标签一</span>
+                        <span class="fa fa-close"></span>
+                    </li>
+                    <li>
+                        <span class="labelText">标签二</span>
+                        <span class="fa fa-close"></span>
+                    </li>
+                    <li>
+                        <span class="labelText">标签三</span>
+                        <span class="fa fa-close"></span>
+                    </li>
+                </ul>
+                <i class="fa fa-plus"></i>
+            </nav>
+            <div class="labelContent">
+                <div class="divDisplay">内容一</div>
+                <div>内容二</div>
+                <div>内容三</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

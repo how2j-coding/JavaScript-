@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        const p = new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                const nowTime = Date.now();
+                if (nowTime % 2 === 0) {
+                    resolve("成功");
+                } else {
+                    reject("失败")
+                }
+            },0)
+
+        })
+
+        p.then(
+            value => {
+                console.log("成功的回调", value)
+            },
+            reason => {
+                console.log("失败的回调", reason)
+            }
+        )
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

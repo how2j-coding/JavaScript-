@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>day20</title>
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            class practice {
+                constructor(x) {
+                    this.x = x;
+                    this.but = document.querySelector(x);
+                    this.but.onclick = this.clickEvent;
+                    console.log(this)
+                }
+
+                clickEvent() {
+                    console.log(this);
+                }
+
+            }
+
+            new practice('button');
+
+            // 构造函数、实例、原型对象
+            function Star(uname, age) {
+                this.uname = uname;
+                this.age = age;
+                // this.sing = function () {
+                //     console.log('1234')
+                // }
+            }
+
+            // 构造函数的原生对象 prototype
+            Star.prototype =  {
+
+                // 实例对象的原生对象  constructor
+                constructor: Star,
+                sing: function () {
+                    console.log(123)
+                },
+                song: function () {
+                    console.log(123)
+                }
+            }
+
+            Object.prototype.sex = '1dfdsfsad 23';
+
+            let ldh = new Star("123", "dfad");
+
+            ldh.song();
+            console.log(Star.prototype)
+            console.log(ldh.__proto__.constructor)
+            console.log(ldh.sex)
+
+            // 构造函数继承父元素方法
+
+            function Father(uname, age) {
+                this.uname = uname;
+                this.age = age;
+            }
+
+            Father.prototype = {
+                constructor: Father,
+                sing: function () {
+                    console.log("我会唱歌")
+                }
+            }
+
+            function Son(uname, age) {
+                Father.call(this,uname, age)
+            }
+
+            let ldh1 = new Son('dfash','idfhs');
+
+            console.log(ldh1)
+        })
+    </script>
+</head>
+<body>
+    <button>点击</button>
+</body>
+</html>
